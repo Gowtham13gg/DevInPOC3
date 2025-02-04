@@ -22,7 +22,9 @@ public class SecurityConfig {
             .csrf().disable()
             .authorizeHttpRequests()
             .requestMatchers("/api/app/insert/SFLead/details").permitAll()
-            .anyRequest().authenticated();
+            .anyRequest().authenticated()
+            .and()
+            .httpBasic();
         return http.build();
     }
 
