@@ -29,8 +29,8 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.applyPermitDefaultValues();
-        configuration.addAllowedMethod("POST");
-        configuration.addAllowedMethod("OPTIONS");
+        configuration.setAllowedMethods(Arrays.asList(System.getProperty("cors.allowed.methods", "POST").split(",")));
+        configuration.setAllowedHeaders(Arrays.asList(System.getProperty("cors.allowed.headers", "Content-Type").split(",")));
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
