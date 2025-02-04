@@ -1,0 +1,22 @@
+# Devin Apps Deployment Configuration
+app:
+  name: sf-lead-api
+  type: spring-boot
+  port: 8080
+
+# Nginx Configuration
+nginx:
+  auth:
+    enabled: false
+  basic_auth:
+    enabled: false
+  config:
+    disable_auth: true
+    allow_all: true
+    
+# Allow public access to API endpoints
+security:
+  public_paths:
+    - "/**"
+  authentication:
+    enabled: false
