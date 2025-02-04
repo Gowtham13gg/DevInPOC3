@@ -7,16 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiResponse<T> {
-    private String status;
+public class ApiResponse {
     private String message;
-    private T data;
-    
-    public static <T> ApiResponse<T> success(T data) {
-        return new ApiResponse<>("success", "Lead details saved successfully", data);
-    }
-    
-    public static <T> ApiResponse<T> error(String message) {
-        return new ApiResponse<>("error", message, null);
-    }
 }
