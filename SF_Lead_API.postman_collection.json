@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "b8f9e234-5f6d-4c1a-9c8e-3f2b89a12345",
+		"name": "SF Lead API",
+		"description": "Collection for testing SF Lead Details API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Insert Lead Details - Success",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"applicationId\": \"APP002\",\n    \"leadId\": \"LEAD002\",\n    \"clientId\": \"CLIENT002\",\n    \"mobileNo\": \"9876543210\",\n    \"lastScreen\": \"PERSONAL_DETAILS\",\n    \"applicationStatus\": \"IN_PROGRESS\",\n    \"personalDetails\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"email\": \"john.doe@example.com\"\n    },\n    \"addressDetails\": {\n        \"HOME\": \"123 Main St\",\n        \"OFFICE\": \"456 Work Ave\"\n    },\n    \"occupationDetails\": {\n        \"occupation\": \"Software Engineer\",\n        \"company\": \"Tech Corp\"\n    },\n    \"consentDetails\": {\n        \"termsAccepted\": \"true\",\n        \"privacyAccepted\": \"true\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://user:8933e4037b0e785e884dd417ce055b1a@github-pr-app-tunnel-w8p39hhc.devinapps.com/api/app/insert/SFLead/details",
+					"protocol": "https",
+					"host": [
+						"github-pr-app-tunnel-w8p39hhc",
+						"devinapps",
+						"com"
+					],
+					"path": [
+						"api",
+						"app",
+						"insert",
+						"SFLead",
+						"details"
+					]
+				},
+				"description": "Successfully insert a new lead with all details"
+			}
+		},
+		{
+			"name": "Insert Lead Details - Duplicate Mobile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"applicationId\": \"APP003\",\n    \"leadId\": \"LEAD003\",\n    \"clientId\": \"CLIENT003\",\n    \"mobileNo\": \"1234567890\",\n    \"lastScreen\": \"PERSONAL_DETAILS\",\n    \"applicationStatus\": \"IN_PROGRESS\",\n    \"personalDetails\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Smith\"\n    },\n    \"occupationDetails\": {\n        \"occupation\": \"Doctor\"\n    },\n    \"consentDetails\": {\n        \"termsAccepted\": \"true\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://user:8933e4037b0e785e884dd417ce055b1a@github-pr-app-tunnel-w8p39hhc.devinapps.com/api/app/insert/SFLead/details",
+					"protocol": "https",
+					"host": [
+						"github-pr-app-tunnel-w8p39hhc",
+						"devinapps",
+						"com"
+					],
+					"path": [
+						"api",
+						"app",
+						"insert",
+						"SFLead",
+						"details"
+					]
+				},
+				"description": "Test duplicate mobile number validation"
+			}
+		},
+		{
+			"name": "Insert Lead Details - Invalid Mobile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"applicationId\": \"APP004\",\n    \"leadId\": \"LEAD004\",\n    \"clientId\": \"CLIENT004\",\n    \"mobileNo\": \"123\",\n    \"personalDetails\": {\n        \"firstName\": \"Test\"\n    },\n    \"occupationDetails\": {\n        \"occupation\": \"Engineer\"\n    },\n    \"consentDetails\": {\n        \"termsAccepted\": \"true\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://user:8933e4037b0e785e884dd417ce055b1a@github-pr-app-tunnel-w8p39hhc.devinapps.com/api/app/insert/SFLead/details",
+					"protocol": "https",
+					"host": [
+						"github-pr-app-tunnel-w8p39hhc",
+						"devinapps",
+						"com"
+					],
+					"path": [
+						"api",
+						"app",
+						"insert",
+						"SFLead",
+						"details"
+					]
+				},
+				"description": "Test invalid mobile number format validation"
+			}
+		},
+		{
+			"name": "Insert Lead Details - Missing Required Fields",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"applicationId\": \"APP005\",\n    \"mobileNo\": \"9876543211\"\n}"
+				},
+				"url": {
+					"raw": "https://user:8933e4037b0e785e884dd417ce055b1a@github-pr-app-tunnel-w8p39hhc.devinapps.com/api/app/insert/SFLead/details",
+					"protocol": "https",
+					"host": [
+						"github-pr-app-tunnel-w8p39hhc",
+						"devinapps",
+						"com"
+					],
+					"path": [
+						"api",
+						"app",
+						"insert",
+						"SFLead",
+						"details"
+					]
+				},
+				"description": "Test missing required fields validation"
+			}
+		}
+	]
+}
