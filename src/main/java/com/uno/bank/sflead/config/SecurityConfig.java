@@ -20,18 +20,17 @@ public class SecurityConfig {
         http
             .cors().and()
             .csrf().disable()
-            .authorizeHttpRequests()
-            .requestMatchers("/api/app/insert/SFLead/details").permitAll()
-            .anyRequest().permitAll();
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+            .httpBasic().disable();
         return http.build();
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.applyPermitDefaultValues();
+        configuration.addAllowedMethod("POST");
+        configuration.addAllowedMethod("OPTIONS");
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
